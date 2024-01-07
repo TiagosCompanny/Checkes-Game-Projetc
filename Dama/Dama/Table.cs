@@ -8,15 +8,13 @@ namespace Dama
 {
     public class Table
     {
-        public static string Player { get; set; }
+        public static string? Player { get; set; }
         public static int Move { get; set; }
 
         public static string[,] table = new string[8, 8];
 
         public void CreateTable()
         {
-            
-
             for (byte i = 0; i < 8; i++)
             {
                 for (byte j = 0; j < 8; j++)
@@ -29,7 +27,7 @@ namespace Dama
                     else if (j % 2 == 0 && (i == 5 || i == 7))
                         table[i, j] = "0";
                     else if (j % 2 != 0 && i == 6)
-                        table[i, j] = "0";
+                        table[i, j] = "0"; 
                     else
                         table[i, j] = " ";
                 }
@@ -37,15 +35,15 @@ namespace Dama
 
         }
 
-
-
         public static void drawTable()
         {
 
             Player = "O"; //is not
             Console.Clear();
             ConsoleColor colorRed = ConsoleColor.Red;
+            ConsoleColor colorDarkRed = ConsoleColor.DarkRed;
             ConsoleColor colorBlue = ConsoleColor.Cyan;
+            ConsoleColor colorDarkBlue = ConsoleColor.DarkCyan;
             ConsoleColor colorYellow = ConsoleColor.DarkYellow;
             ConsoleColor switchColor;
 
@@ -58,29 +56,29 @@ namespace Dama
                     {
                         Console.BackgroundColor = ConsoleColor.White;
                         Console.Write(" ");
-                        if(table[i, j] == "O")
+                        if (table[i, j] == "O")
                         {
-                            Console.ForegroundColor = ConsoleColor.Cyan;
+                            Console.ForegroundColor = colorBlue;
                             Console.Write(table[i, j]);
-                            Console.ForegroundColor = ConsoleColor.DarkYellow;
+                            Console.ForegroundColor = colorYellow;
                         }
                         else if (table[i, j] == "0")
                         {
-                            Console.ForegroundColor = ConsoleColor.Red;
+                            Console.ForegroundColor = colorRed;
                             Console.Write(table[i, j]);
-                            Console.ForegroundColor = ConsoleColor.DarkYellow;
+                            Console.ForegroundColor = colorYellow;
                         }
-                        else if(table[i, j] == "@")
+                        else if (table[i, j] == "@")
                         {
-                            Console.ForegroundColor = ConsoleColor.DarkRed;
+                            Console.ForegroundColor = colorDarkRed;
                             Console.Write(table[i, j]);
-                            Console.ForegroundColor = ConsoleColor.DarkYellow;
+                            Console.ForegroundColor = colorYellow;
                         }
                         else if (table[i, j] == "#")
                         {
-                            Console.ForegroundColor = ConsoleColor.DarkCyan;
+                            Console.ForegroundColor = colorBlue;
                             Console.Write(table[i, j]);
-                            Console.ForegroundColor = ConsoleColor.DarkYellow;
+                            Console.ForegroundColor = colorYellow;
                         }
                         else
                             Console.Write(table[i, j]);
@@ -95,27 +93,27 @@ namespace Dama
                         Console.Write(" ");
                         if (table[i, j] == "O")
                         {
-                            Console.ForegroundColor = ConsoleColor.Cyan;
+                            Console.ForegroundColor = colorBlue;
                             Console.Write(table[i, j]);
-                            Console.ForegroundColor = ConsoleColor.DarkYellow;
+                            Console.ForegroundColor = colorYellow;
                         }
                         else if (table[i, j] == "0")
                         {
-                            Console.ForegroundColor = ConsoleColor.Red;
+                            Console.ForegroundColor = colorRed;
                             Console.Write(table[i, j]);
-                            Console.ForegroundColor = ConsoleColor.DarkYellow;
+                            Console.ForegroundColor = colorYellow;
                         }
                         else if (table[i, j] == "@")
                         {
-                            Console.ForegroundColor = ConsoleColor.DarkRed;
+                            Console.ForegroundColor = colorDarkRed;
                             Console.Write(table[i, j]);
-                            Console.ForegroundColor = ConsoleColor.DarkYellow;
+                            Console.ForegroundColor = colorYellow;
                         }
                         else if (table[i, j] == "#")
                         {
-                            Console.ForegroundColor = ConsoleColor.DarkCyan;
+                            Console.ForegroundColor = colorDarkBlue;
                             Console.Write(table[i, j]);
-                            Console.ForegroundColor = ConsoleColor.DarkYellow;
+                            Console.ForegroundColor = colorYellow;
                         }
                         else
                             Console.Write(table[i, j]);
@@ -128,27 +126,27 @@ namespace Dama
                         Console.Write(" ");
                         if (table[i, j] == "O")
                         {
-                            Console.ForegroundColor = ConsoleColor.Cyan;
+                            Console.ForegroundColor = colorBlue;
                             Console.Write(table[i, j]);
-                            Console.ForegroundColor = ConsoleColor.DarkYellow;
+                            Console.ForegroundColor = colorYellow;
                         }
                         else if (table[i, j] == "0")
                         {
-                            Console.ForegroundColor = ConsoleColor.Red;
+                            Console.ForegroundColor = colorRed;
                             Console.Write(table[i, j]);
-                            Console.ForegroundColor = ConsoleColor.DarkYellow;
+                            Console.ForegroundColor = colorYellow;
                         }
                         else if (table[i, j] == "@")
                         {
-                            Console.ForegroundColor = ConsoleColor.DarkRed;
+                            Console.ForegroundColor = colorDarkRed;
                             Console.Write(table[i, j]);
-                            Console.ForegroundColor = ConsoleColor.DarkYellow;
+                            Console.ForegroundColor = colorYellow;
                         }
                         else if (table[i, j] == "#")
                         {
-                            Console.ForegroundColor = ConsoleColor.DarkCyan;
+                            Console.ForegroundColor = colorDarkBlue;
                             Console.Write(table[i, j]);
-                            Console.ForegroundColor = ConsoleColor.DarkYellow;
+                            Console.ForegroundColor = colorYellow;
                         }
                         else
                             Console.Write(table[i, j]);
@@ -157,27 +155,52 @@ namespace Dama
                     }
 
                 }
-                Console.Write(" " + (i-8)*-1);
+                Console.ForegroundColor = colorYellow;
+                Console.Write(" " + (i - 8) * -1);
                 Console.WriteLine();
             }
             Console.WriteLine(" A  B  C  D  E  F  G  H ");
             switch (Move % 2 == 0)
             {
-                case true: Player = "Red"; switchColor = ConsoleColor.Red; break;
-                case false: Player = "Blue"; switchColor = ConsoleColor.Cyan; break;
+                case true: Player = "Red"; switchColor = colorRed; break;
+                case false: Player = "Blue"; switchColor = colorBlue; break;
             }
             Console.ForegroundColor = switchColor;
             Console.WriteLine("\nPlayer: " + Player);
-            Console.ForegroundColor = colorYellow;
+            Console.ResetColor();
             Console.WriteLine("Move: " + (Move + 1));
         }
-
-        public static void RefreshTable()
+        public static bool WinValidation(string adversaryPiece, string adversaryKingPiece)
         {
+            for (byte i = 0; i < 8; i++)
+            {
+                for (byte j = 0; j < 8; j++)
+                {
+                    if(table[i, j] == adversaryPiece || table[i, j] == adversaryKingPiece)
+                        return false;
+                }
+            }
+            return true;
+        }
+
+            [System.Diagnostics.CodeAnalysis.SuppressMessage("Interoperability", "CA1416:Validar a compatibilidade da plataforma", Justification = "<Pendente>")]
+        public static void RefreshTable(bool incrementarContadorJogada, bool beep, string mensagemOpcional = "")
+        {
+            if (incrementarContadorJogada)
+            {
+                Table.Move++;
+                Console.Beep();
+            }
+            else
+            {
+                if(beep)
+                    Console.Beep(1000, 200);
+            }
             Console.Clear();
-            Console.Beep();
             Table.drawTable();
+            Console.WriteLine(mensagemOpcional);
             Thread.Sleep(200);
+
         }
 
     }
